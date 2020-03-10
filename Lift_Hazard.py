@@ -18,10 +18,12 @@ def lift_hazard(position_of_lifts,calls):
         dist = []
     df = pd.DataFrame(lifts)
     for j in range(len(df)):
-        mindf = df.min(axis = 1).sort_values(ascending = False)
+        mindf = df.min(axis = 1).sort_values(ascending = True)
         key,value = zip(*mindf.iteritems())
         cols = df.loc[:,(df==value[0]).any()].columns.values[0]
         index = df[df[cols] == value[0]].index.values[0]
+        print(cols)
+        print(index)
         position_of_lifts[index] = calls[cols]
         df = df.drop(cols,axis = 1)
         df = df[df.index != index]

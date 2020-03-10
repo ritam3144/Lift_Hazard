@@ -22,8 +22,6 @@ def lift_hazard(position_of_lifts,calls):
         key,value = zip(*mindf.iteritems())
         cols = df.loc[:,(df==value[0]).any()].columns.values[0]
         index = df[df[cols] == value[0]].index.values[0]
-        print(cols)
-        print(index)
         position_of_lifts[index] = calls[cols]
         df = df.drop(cols,axis = 1)
         df = df[df.index != index]
